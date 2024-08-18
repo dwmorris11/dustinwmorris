@@ -8,12 +8,14 @@
     "build": "npm run build:types && npm run build:js",
     "build:types": "tsc --build",
     "build:js": "webpack --config webpack.dev.js",
-    "start": "npm run build && node ./clientserver/public/index.bundle.js"
+    "encrypt": "./node_modules/.bin/dotenvx encrypt -f clientserver/.env.local && ./node_modules/.bin/dotenvx encrypt -f clientserver/.env.production && ./node_modules/.bin/dotenvx encrypt -f .env",
+    "start": "npm run build && npm run encrypt && dotenvx run -f clientserver/.env.local -- node ./server/server.js"
   },
   "author": "Dustin Morris",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.7.0",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@fontsource/roboto": "latest",

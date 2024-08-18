@@ -10,7 +10,8 @@
         "node_modules",
         "**/node_modules",
         "**/node_modules/@mui/base/Unstable_Popup/Popup.d.ts",
-        "**/*.bundle.js"
+        "**/*.bundle.js",
+        "copyfiles.js"
     ],
     "include": [],
     "extends": "./tsconfig.base.json"
