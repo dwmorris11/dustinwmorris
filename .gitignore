@@ -11,7 +11,8 @@ out/
 server/
 
 # Webpack
-!webpack.*
+!webpack*
+!eslint.config.js
 
 # TypeScript
 *.js
