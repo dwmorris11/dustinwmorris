@@ -1,0 +1,21 @@
+{
+    "extends": "../tsconfig.custom.base.json",
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "declarationMap": true,
+        "declaration": true,
+        "emitDeclarationOnly": false,
+        "noEmit": false,
+        "lib": [
+            "es2023"
+        ],
+        "composite": true,
+        "outDir": "../server",
+        "rootDir": ".",
+        "paths": {
+            "@public/*": ["./public/*"]
+        },
+    },
+    "include": ["**/*.ts"],
+}
