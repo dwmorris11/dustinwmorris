@@ -1,10 +1,7 @@
 import express, { Router } from 'express';
-import { path, fs } from './common_imports.js';
+import { path, fs, resolvePath, _dirname_ } from './common_imports.js';
 import * as dotx from '@dotenvx/dotenvx';
 dotx.config();
-
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
-const routesPath = path.join(__dirname, 'routes');
 
 const routes: { [key: string]: Router } = {};
 loadRoutes().then(() => {
@@ -17,8 +14,7 @@ loadRoutes().then(() => {
 
 const APP = express();
 const PORT = process.env.PORT || 3000;
-
-APP.use(express.static(path.join(__dirname, '@public')));
+APP.use(express.static(resolvePath('@public')));
 
 APP.listen(PORT, () => {
     console.log(`Server is running on ${process.env.URL}:${PORT}`);
@@ -28,6 +24,7 @@ APP.listen(PORT, () => {
 // Import all routes
 /////////////////////////////////////////////////
 async function loadRoutes() {
+    const routesPath = path.join(_dirname_(import.meta.url), 'routes');
     const files = fs.readdirSync(routesPath).filter((file) => file.endsWith('.js'));
 
     for (const file of files) {
